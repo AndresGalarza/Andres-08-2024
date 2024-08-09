@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useMyTeamStore = defineStore("myTeam", {
   state: () => ({
-    team: [],
+    team: JSON.parse(localStorage.getItem("team")) || [],
   }),
 
   getters: {
@@ -17,9 +17,11 @@ export const useMyTeamStore = defineStore("myTeam", {
   actions: {
     addPokemon(pokemon) {
       this.team.push(pokemon);
+      localStorage.setItem("team", JSON.stringify(this.team));
     },
     removePokemon(pokemon) {
       this.team = this.team.filter((id) => id !== pokemon);
+      localStorage.setItem("team", JSON.stringify(this.team));
     },
   },
 });

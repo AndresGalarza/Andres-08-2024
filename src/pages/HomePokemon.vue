@@ -20,10 +20,12 @@
 
 <script setup>
 import { useApi } from "@/composables/api.js";
+import { useToast } from "@/composables/toast.js";
 import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
 import PokeCard from "../components/complex/PokeCard.vue";
 import LoadingPage from "../components/ui/LoadingPage.vue";
 import { useMyTeamStore } from "../store/myTeam.js";
+const { createToast: toast } = useToast();
 const MyTeam = useMyTeamStore();
 
 const { getData } = useApi();
@@ -80,7 +82,7 @@ const togleMyTeam = (id) => {
     if (MyTeam.getTeamList.length < 6) {
       MyTeam.addPokemon(id);
     } else {
-      alert("Sorry, Your team is full");
+      toast({ message: "Sorry, Your team is full" });
     }
   }
 };

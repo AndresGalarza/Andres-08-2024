@@ -23,9 +23,9 @@
   </div>
 </template>
 <script setup>
-import PokeCard from "./PokeCard.vue";
-import { ref, onBeforeMount, defineProps } from "vue";
 import { useApi } from "@/composables/api.js";
+import { defineProps, onBeforeMount, ref } from "vue";
+import PokeCard from "./PokeCard.vue";
 
 const { getData } = useApi();
 const props = defineProps({
@@ -69,7 +69,6 @@ onBeforeMount(async () => {
   const evolutionChainUrl = data.evolution_chain.url.replace(BASE_URL, "");
 
   const dataEvolution = await getData(evolutionChainUrl);
-  console.log(dataEvolution);
 
   let evolutionChain = [];
   evolutionChain.push(getNameId(dataEvolution.chain.species));
