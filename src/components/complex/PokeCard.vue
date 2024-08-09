@@ -1,12 +1,19 @@
 <template>
   <div
-    class="p-4 border-2 border-gray-400 cursor-pointer"
-    :class="teamList.includes(id) ? 'border-2 border-blue-500' : ''"
+    class="p-4 border-2 border-gray-400"
+    :class="[
+      teamList.includes(id) ? 'border-2 border-blue-500' : '',
+      isInteactive ? 'cursor-pointer' : '',
+    ]"
     @click="onClick"
   >
     <img
       class="h-44"
-      :class="!teamList.includes(id) ? 'grayscale hover:grayscale-0' : ''"
+      :class="
+        !teamList.includes(id) && isInteactive
+          ? 'grayscale hover:grayscale-0'
+          : ''
+      "
       :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`"
     />
     <p class="text-center font-semibold text-blue-500 pt-4">{{ name }}</p>
@@ -28,7 +35,12 @@ const props = defineProps({
   },
   teamList: {
     type: Array,
-    required: true,
+    required: false,
+    default: () => [],
+  },
+  isInteactive: {
+    type: Boolean,
+    default: true,
   },
 });
 

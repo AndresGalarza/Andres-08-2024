@@ -37,11 +37,21 @@
           </div>
         </div>
         <div class="p-2 border-gray-500">
-          <p>Types</p>
-          <div class="flex gap-3">
-            <div v-for="(type, index) in types" :key="index">
-              <p>{{ type.type.name }}</p>
-            </div>
+          <div>
+            <p>
+              Types:
+              <span class="font-semibold">
+                {{ typesList }}
+              </span>
+            </p>
+          </div>
+          <div v-if="showAditionalInfo">
+            <p>
+              Height: <span class="font-semibold"> {{ height }} </span>
+            </p>
+            <p>
+              Weight: <span class="font-semibold"> {{ weight }} </span>
+            </p>
           </div>
         </div>
       </div>
@@ -51,7 +61,7 @@
 <script setup>
 import CustomButton from "../ui/CustomButton.vue";
 import BarGraph from "../ui/BarGraph.vue";
-import { ref, defineProps, onBeforeMount, defineEmits } from "vue";
+import { ref, computed, defineProps, onBeforeMount, defineEmits } from "vue";
 import { useApi } from "@/composables/api.js";
 
 const { getData } = useApi();
@@ -66,13 +76,28 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  showAditionalInfo: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const name = ref("Pikachu");
 const stats = ref(null);
 const image = ref(null);
-const types = ref(null);
+const types = ref([]);
 const cries = ref(null);
+const height = ref(null);
+const weight = ref(null);
+const description = ref(null);
+
+const typesList = computed(() => {
+  return types.value
+    .map((type) => {
+      return type.type.name;
+    })
+    .join(", ");
+});
 
 onBeforeMount(async () => {
   const response = await getData(`pokemon/${props.id}`);
@@ -82,5 +107,8 @@ onBeforeMount(async () => {
   types.value = data.types;
   cries.value = data.cries;
   name.value = data.name;
+  height.value = data.height;
+  weight.value = data.weight;
+  description.value = data.description;
 });
 </script>
