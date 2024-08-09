@@ -1,7 +1,7 @@
 <template>
   <button
     @click="emit('click')"
-    class="text-white font-bold py-2 px-4 rounded h-fit"
+    class="text-white font-bold py-2 px-4 rounded h-fit w-fit"
     :class="
       color === 'blue'
         ? 'bg-blue-500 hover:bg-blue-700'
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineEmits, defineProps } from "vue";
 const emit = defineEmits(["click"]);
 defineProps({
   color: {

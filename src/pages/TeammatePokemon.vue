@@ -1,16 +1,16 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-4">
     <PokemonStats :id="id" :canDoActions="false" showAditionalInfo />
     <PokemonEvolution :id="id" />
   </div>
 </template>
 
 <script setup>
+import { onBeforeMount, ref } from "vue";
+import { useRouter } from "vue-router";
 import PokemonEvolution from "../components/complex/PokemonEvolution.vue";
 import PokemonStats from "../components/complex/PokemonStats.vue";
-import { ref, onBeforeMount } from "vue";
 import { useMyTeamStore } from "../store/myTeam.js";
-import { useRouter } from "vue-router";
 const router = useRouter();
 
 const MyTeam = useMyTeamStore();

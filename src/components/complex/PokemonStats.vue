@@ -4,24 +4,28 @@
       {{ name }}
     </h2>
     <div class="py-4 flex gap-3 flex-wrap self-start flex-col">
-      <div class="flex flex-wrap gap-3">
-        <img class="max-w-40 max-h-40" :src="image" />
+      <div class="flex flex-wrap gap-3 w-full">
+        <div class="w-full md:w-fit">
+          <img class="max-w-40 max-h-40" :src="image" />
+        </div>
         <template v-if="canDoActions">
-          <CustomButton color="blue" @click="emit('goDetail', id)"
-            >Details on my team</CustomButton
+          <CustomButton color="blue" @click="emit('goDetail', id)">
+            Details on my team</CustomButton
           >
           <CustomButton color="red" @click="emit('remove', id)">
             Remove From my team
           </CustomButton>
         </template>
       </div>
-      <div class="flex-grow">
+      <div class="flex-grow w-full">
         <div class="p-2 border-b-2 border-gray-500">
           <p>Stats</p>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div v-for="(stat, index) in stats" :key="index">
-              <p>{{ stat.stat.name }}</p>
-              <p>{{ stat.base_stat }}</p>
+              <p>
+                {{ stat.stat.name }}:
+                <span class="font-semibold"> {{ stat.base_stat }} </span>
+              </p>
               <BarGraph :value="stat.base_stat" />
             </div>
           </div>
@@ -59,10 +63,10 @@
   </div>
 </template>
 <script setup>
-import CustomButton from "../ui/CustomButton.vue";
-import BarGraph from "../ui/BarGraph.vue";
-import { ref, computed, defineProps, onBeforeMount, defineEmits } from "vue";
 import { useApi } from "@/composables/api.js";
+import { computed, defineEmits, defineProps, onBeforeMount, ref } from "vue";
+import BarGraph from "../ui/BarGraph.vue";
+import CustomButton from "../ui/CustomButton.vue";
 
 const { getData } = useApi();
 

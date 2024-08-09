@@ -24,19 +24,18 @@
   </div>
 </template>
 <script setup>
-import PokemonStats from "../components/complex/PokemonStats.vue";
-import { ref } from "vue";
-import { useMyTeamStore } from "../store/myTeam.js";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
+import PokemonStats from "../components/complex/PokemonStats.vue";
+import { useMyTeamStore } from "../store/myTeam.js";
 const router = useRouter();
 
 const MyTeam = useMyTeamStore();
 
-const teamList = ref(MyTeam.getTeamList);
+const teamList = computed(() => MyTeam.getTeamList);
 
 const removePokemon = (id) => {
   MyTeam.removePokemon(id);
-  teamList.value = MyTeam.getTeamList;
 };
 
 const goDetail = (id) => {

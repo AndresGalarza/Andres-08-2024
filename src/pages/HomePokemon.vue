@@ -1,9 +1,13 @@
 <template>
   <div>
     <LoadingPage v-if="loading" />
-    <div class="flex gap-4 flex-wrap justify-center">
+    <p class="text-center text-2xl p-4 text-red-900">
+      Click on your favorites to choose your team
+    </p>
+    <div class="flex gap-4 flex-wrap justify-around">
       <template v-for="pokemon in pokemons" :key="pokemon.name">
         <PokeCard
+          class="w-48"
           :id="pokemon.id"
           :name="pokemon.name"
           :teamList="MyTeam.getTeamList"
@@ -15,10 +19,10 @@
 </template>
 
 <script setup>
-import LoadingPage from "../components/ui/LoadingPage.vue";
-import PokeCard from "../components/complex/PokeCard.vue";
-import { ref, onBeforeMount, onMounted, onBeforeUnmount } from "vue";
 import { useApi } from "@/composables/api.js";
+import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
+import PokeCard from "../components/complex/PokeCard.vue";
+import LoadingPage from "../components/ui/LoadingPage.vue";
 import { useMyTeamStore } from "../store/myTeam.js";
 const MyTeam = useMyTeamStore();
 
