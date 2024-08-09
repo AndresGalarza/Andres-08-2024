@@ -1,6 +1,6 @@
 <template>
   <HeaderMenu />
-  <div class="py-24 px-2">
+  <div class="pt-24 pb-8 px-2">
     <RouterView />
   </div>
 </template>

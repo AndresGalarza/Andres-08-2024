@@ -1,0 +1,38 @@
+<template>
+  <div
+    class="p-4 border-2 border-gray-400 cursor-pointer"
+    :class="teamList.includes(id) ? 'border-2 border-blue-500' : ''"
+    @click="onClick"
+  >
+    <img
+      class="h-44"
+      :class="!teamList.includes(id) ? 'grayscale hover:grayscale-0' : ''"
+      :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`"
+    />
+    <p class="text-center font-semibold text-blue-500 pt-4">{{ name }}</p>
+  </div>
+</template>
+<script setup>
+import { defineProps, defineEmits } from "vue";
+
+const emit = defineEmits(["click"]);
+
+const props = defineProps({
+  id: {
+    type: [Number, String],
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  teamList: {
+    type: Array,
+    required: true,
+  },
+});
+
+const onClick = () => {
+  emit("click", props.id);
+};
+</script>
