@@ -19,7 +19,7 @@ export const useMyTeamStore = defineStore("myTeam", {
       this.team.push(pokemon);
     },
     removePokemon(pokemon) {
-      this.team = this.team.filter((p) => p.id !== pokemon.id);
+      this.team = this.team.filter((id) => id !== pokemon);
     },
   },
 });

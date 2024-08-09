@@ -1,6 +1,7 @@
+import Home from "@/pages/HomePokemon.vue";
+import Team from "@/pages/TeamPokemon.vue";
+import Teammate from "@/pages/TeammatePokemon.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/HomePokemon.vue";
-
 // Import your route components here
 
 const routes = [
@@ -12,12 +13,12 @@ const routes = [
   {
     path: "/team",
     name: "Team",
-    component: Home,
+    component: Team,
   },
   {
     path: "/team/:id",
     name: "Teammate",
-    component: Home,
+    component: Teammate,
   },
 ];
 

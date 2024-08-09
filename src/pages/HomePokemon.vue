@@ -18,7 +18,7 @@
 import LoadingPage from "../components/ui/LoadingPage.vue";
 import PokeCard from "../components/complex/PokeCard.vue";
 import { ref, onBeforeMount, onMounted, onBeforeUnmount } from "vue";
-import { useApi } from "../ composables/api.js";
+import { useApi } from "@/composables/api.js";
 import { useMyTeamStore } from "../store/myTeam.js";
 const MyTeam = useMyTeamStore();
 
