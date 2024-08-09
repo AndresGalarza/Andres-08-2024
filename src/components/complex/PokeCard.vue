@@ -2,7 +2,7 @@
   <div
     class="p-4 border-2 border-gray-400"
     :class="[
-      teamList.includes(id) ? 'border-2 border-blue-500' : '',
+      teamList.includes(id) ? 'border-2 border-blue-500 bg-blue-300' : '',
       isInteactive ? 'cursor-pointer' : '',
     ]"
     @click="onClick"
